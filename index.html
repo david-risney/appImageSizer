@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class="borderless fill noserif">
+<head>
+    <title>App Image Sizer</title>
+    <link type="text/css" rel="stylesheet" href="lib/winjs/css/ui-light.css" />
+    <link type="text/css" rel="stylesheet" href="css/app.css" />
+
+    <script src="lib/winjs/js/base.js"></script>
+    <script src="lib/winjs/js/ui.js"></script>
+    <script src="lib/zip/zip.js"></script>
+    <script src="lib/fileSaver/Blob.js"></script>
+    <script src="lib/fileSaver/canvas-toBlob.js"></script>
+    <script src="lib/fileSaver/FileSaver.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/inputUI.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body class="borderless fill">
+    <header>
+        <h1>App Image Sizer</h1>
+    </header>
+    <input type="file" id="fileInput" />
+    <div id="inputImageList" data-win-control="WinJS.UI.Repeater">
+        <img class="block" data-win-bind="src: uri" />
+        <button class="win-command" data-win-control="WinJS.UI.AppBarCommand" data-win-options="{label: 'Remove', icon: 'delete', section: 'selection', tooltip: 'Remove image.'}"></button>
+    </div>
+
+    <footer>
+        <h2>Credits</h2>
+        <ul>
+            <li><a href="http://gildas-lormeau.github.io/zip.js/core-api.html">zip.js</a></li>
+            <li><a href="https://github.com/eligrey/FileSaver.js">FileSaver.js</a></li>
+        </ul>
+    </footer>
+
+</body>
+</html>
