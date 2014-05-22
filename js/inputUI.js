@@ -1,22 +1,21 @@
 var InputUI = function () {
     var that = this,
-        fileInput = document.getElementById("fileInput"),
-        inputImageList = document.getElementById("inputImageList"),
-        mapFileToEntry = function (file) {
-            return {
-                file: file,
-                uri: URL.createObjectURL(file)
-            };
-        },
+        fileInput,
+        inputImageListElement,
+        fileInputChangeHandler;
+
+    this.initializeAsync = function (inputImageList) {
         fileInputChangeHandler = function (event) {
-            var files = event.target && event.target.files;
-            if (files) {
-                that.list.splice.apply(that.list, [0, that.list.length].concat(files.map(mapFileToEntry)));
+            var files;
+            if (event.target && event.target.files) {
+                Array.from(event.target.files).forEach(inputImageList.addFile.bind(inputImageList));
             }
         };
+        fileInput = document.getElementById("fileInput");
+        inputImageListElement = document.getElementById("inputImageListView");
+        fileInput.addEventListener("change", fileInputChangeHandler, false);
 
-    fileInput.addEventListener("change", fileInputChangeHandler, false);
-
-    this.list = new WinJS.Binding.List();
-    inputImageList.winControl.data = this.list;
+        inputImageListElement.winControl.data = inputImageList.list;
+        return WinJS.Promise.wrap();
+    }
 };

@@ -1,3 +1,0 @@
-var Model = function (profile) {
-
-};
