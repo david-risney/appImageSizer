@@ -54,7 +54,11 @@ var ImageListSetProfile = (function () {
             if (listSet.length > that.sets.length) {
                 listSet.splice(that.sets.length, listSet.length - that.sets.length);
             }
-            
+            that.sets.forEach(function (set, index) {
+                var sourceImage = that.guessBestImageForSetProfile(set, imageList);
+                listSet[index].splice(0, listSet[index].length);
+
+            });
         };
     };
 

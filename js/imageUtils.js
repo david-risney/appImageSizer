@@ -11,7 +11,8 @@ var ImageUtils = (function () {
         canvas.width = cropWidth;
         canvas.height = cropHeight;
         context = canvas.getContext("2d");
-        context.drawImage(image, )
+        context.drawImage(image, cropX / imageScale, cropY / imageScale, cropWidth / imageScale, cropHeight / imageScale, 0, 0, cropWidth, cropHeight);
+        canvas.toBlob();
     };
 
     return ImageUtils;
