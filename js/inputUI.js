@@ -8,7 +8,7 @@ var InputUI = function () {
         fileInputChangeHandler = function (event) {
             var files;
             if (event.target && event.target.files) {
-                Array.from(event.target.files).forEach(inputImageList.addFile.bind(inputImageList));
+                Array.from(event.target.files).forEach(inputImageList.addFileAsync.bind(inputImageList));
             }
         };
         fileInput = document.getElementById("fileInput");
@@ -17,5 +17,5 @@ var InputUI = function () {
 
         inputImageListElement.winControl.data = inputImageList.list;
         return WinJS.Promise.wrap();
-    }
+    };
 };

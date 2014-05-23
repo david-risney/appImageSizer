@@ -1,8 +1,8 @@
 var ImageList = function () {
     var that = this,
         nextId = 0,
-        mapFileToEntry = function (file) {
-            return {
+        mapFileToEntryAsync = function (file) {
+            var entry = {
                 id: nextId++,
                 original: {
                     blob: file,
@@ -12,7 +12,19 @@ var ImageList = function () {
                     blob: file,
                     uri: URL.createObjectURL(file)
                 }
+            },
+            deferral = new SignalPromise(),
+            image = document.createElement("img");
+
+            image.onload = function () {
+                entry.modified.image = entry.original.image = image;
+                deferral.complete(entry);
             };
+            image.onerror = function () {
+                deferral.error();
+            };
+            image.src = entry.modified.uri;
+            return deferral.promise;
         },
         idToItem = function(id) {
             return that.list.filter(function(item) { return item.id === id; })[0];
@@ -22,11 +34,13 @@ var ImageList = function () {
         };
 
     this.list = new WinJS.Binding.List();
-    this.addFile = function (file) {
-        that.list.push(mapFileToEntry(file));
+    this.addFileAsync = function (file) {
+        return mapFileToEntryAsync(file).then(function (entry) {
+            that.list.push(entry);
+        });
     };
     this.removeEntryById = function (id) {
         var idx = idToIdx(id);
-        that.list.splice(idx, 1);
+        that.list.splice(idx, 1)
     };
 };
