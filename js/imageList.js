@@ -39,6 +39,12 @@ var ImageList = function () {
             that.list.push(entry);
         });
     };
+    this.addModifiedImageAsync = function (originalEntry, imageBlob) {
+        return mapFileToEntryAsync(imageBlob).then(function (entry) {
+            entry.original = originalEntry.modified;
+            that.list.push(entry);
+        });
+    };
     this.removeEntryById = function (id) {
         var idx = idToIdx(id);
         that.list.splice(idx, 1)

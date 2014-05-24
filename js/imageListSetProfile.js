@@ -56,23 +56,32 @@ var ImageListSetProfile = (function () {
             }
         };
 
-        this.updateListSet = function (listSet, imageList) {
+        this.updateListSetAsync = function (listSet, imageList) {
+            var promises;
             if (!listSet) {
                 listSet = new WinJS.Binding.List();
             }
+
             while (listSet.length < that.sets.length) {
-                listSet.push(new WinJS.Binding.List());
+                listSet.push(new ImageList());
             }
             if (listSet.length > that.sets.length) {
                 listSet.splice(that.sets.length, listSet.length - that.sets.length);
             }
-            that.sets.forEach(function (set, index) {
-                var sourceImage = that.guessBestImageForSetProfile(set, imageList);
+            promises = that.sets.map(function (set, index) {
+                var sourceImage = that.guessBestImageForSetProfile(set, imageList),
+                    promises = [];
                 if (sourceImage) {
-                    listSet.getAt(index).splice(0, listSet.getAt(index).length, sourceImage);
+                    promises = set.resolutions.map(function (resolution) {
+                        return ImageUtils.fitImageToResolutionAsync(sourceImage.modified.image, resolution).then(function (fittedImage) {
+                            return listSet.getAt(index).addModifiedImageAsync(sourceImage, fittedImage);
+                        });
+                    });
                 }
-            });
-            return listSet;
+                return promises;
+            }).reduce(function (total, next) { return total.concat(next); }, []);
+
+            return promises.length ? WinJS.Promise.join(promises).then(function () { return listSet; }) : WinJS.Promise.wrap(listSet);
         };
     };
 

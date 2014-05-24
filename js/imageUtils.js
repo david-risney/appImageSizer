@@ -1,18 +1,58 @@
 var ImageUtils = (function () {
     var ImageUtils = {};
 
-    ImageUtils.scale = function(image, scaleFactor) {
-        return ImageUtils.scaleAndCrop(image, scaleFactor, 0, 0, image.width * scaleFactor, image.height * scaleFactor);
+    ImageUtils.canvasDataToColor = function(canvasData) {
+        return "rgba(" + 
+            canvasData.data[0] + ", " +
+            canvasData.data[1] + ", " +
+            canvasData.data[2] + ", " +
+            canvasData.data[3] +
+            ")";
+    }
+
+    // originalImage is scaled by originalImageScale and then placed on a canvas at originalImageOffsetX/Y. The canvas is size cropWidhtxcropHeight
+    ImageUtils.scaleAndCropAsync = function (image, imageOffsetX, imageOffsetY, imageScaledWidth, imageScaledHeight, canvasWidth, canvasHeight, canvasColor) {
+        var canvas = document.createElement("canvas"),
+            context,
+            deferral = new SignalPromise();
+
+        canvas.width = imageScaledWidth;
+        canvas.height = imageScaledHeight;
+
+        context = canvas.getContext("2d");
+        if (!canvasColor) {
+            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, image.width, image.height);
+            canvasColor = ImageUtils.canvasDataToColor(context.getImageData(0, 0, 1, 1));
+        }
+        context.fillStyle = canvasColor;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.drawImage(image, 0, 0, image.width, image.height, imageOffsetX, imageOffsetY, imageScaledWidth, imageScaledHeight);
+
+        canvas.toBlob(deferral.complete.bind(deferral));
+
+        return deferral.promise;
     };
 
-    ImageUtils.scaleAndCrop = function (image, imageScale, cropX, cropY, cropWidth, cropHeight) {
-        var canvas = document.createElement("canvas"),
-            context;
-        canvas.width = cropWidth;
-        canvas.height = cropHeight;
-        context = canvas.getContext("2d");
-        context.drawImage(image, cropX / imageScale, cropY / imageScale, cropWidth / imageScale, cropHeight / imageScale, 0, 0, cropWidth, cropHeight);
-        canvas.toBlob();
+    // image is an image with width & height
+    // resolution has w & h
+    ImageUtils.fitImageToResolutionAsync = function (image, resolution) {
+        var scale = resolution.w / image.width,
+            scaledImageWidth,
+            scaledImageHeight,
+            offsetX,
+            offsetY;
+
+        if (image.height * scale > resolution.h) {
+            scale = resolution.h / image.height;
+        }
+        scaledImageWidth = image.width * scale;
+        scaledImageHeight = image.height * scale;
+
+        offsetX = resolution.w / 2 - scaledImageWidth / 2;
+        offsetY = resolution.h / 2 - scaledImageHeight / 2;
+
+        return ImageUtils.scaleAndCropAsync(image, offsetX, offsetY, scaledImageWidth, scaledImageHeight, resolution.w, resolution.h);
     };
 
     return ImageUtils;

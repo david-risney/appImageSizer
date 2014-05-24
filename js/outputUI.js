@@ -5,11 +5,16 @@ var OutputUI = function () {
 
     this.initializeAsync = function (inputImageList, imageListSetProfile) {
         outputImageListSetView = document.getElementById("outputImageListSetView");
-        outputImageListSet = imageListSetProfile.updateListSet(outputImageListSet, inputImageList);
-        outputImageListSetView.winControl.data = outputImageListSet;
+
         document.getElementById("updateOutputFromInput").addEventListener("click", function () {
-            imageListSetProfile.updateListSet(outputImageListSet, inputImageList);
+            imageListSetProfile.updateListSetAsync(outputImageListSet, inputImageList).then(function () {
+                outputImageListSet.notifyReload();
+            });
         });
-        return WinJS.Promise.wrap();
+
+        return imageListSetProfile.updateListSetAsync(outputImageListSet, inputImageList).then(function (outputImageListSetIn) {
+            outputImageListSet = outputImageListSetIn;
+            outputImageListSetView.winControl.data = outputImageListSet;
+        });
     };
 };
