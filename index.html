@@ -37,6 +37,7 @@
             <div class="image-container center-container bordered">
                 <img class="block image-content center-content" data-win-bind="src: modified.uri" />
             </div>
+            <div><span data-win-bind="textContent: modified.image.width"></span> x <span data-win-bind="textContent: modified.image.height"></span></div>
         </section>
     </div>
     <div>
@@ -44,12 +45,16 @@
     </div>
     <hr />
     <div id="outputImageListSetView" class="flex-list vertical-nowrap" data-win-control="WinJS.UI.Repeater">
-        <div class="flex-list horizontal-wrap" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data: this">
-            <section class="inline-block" data-win-bind="id: id">
-                <div class="image-container center-container bordered">
-                    <img class="block image-content center-content" data-win-bind="src: modified.uri" />
-                </div>
-            </section>
+        <div>
+            <h2><span data-win-bind="textContent: this.name"></span></h2>
+            <div class="flex-list horizontal-wrap" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data: this.list">
+                <section class="inline-block" data-win-bind="id: id">
+                    <div class="image-container center-container bordered">
+                        <img class="block image-content center-content" data-win-bind="src: modified.uri" />
+                    </div>
+                    <div><span data-win-bind="textContent: modified.image.width"></span> x <span data-win-bind="textContent: modified.image.height"></span></div>
+                </section>
+            </div>
         </div>
     </div>
 

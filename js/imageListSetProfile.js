@@ -35,9 +35,10 @@ var ImageListSetProfile = (function () {
     ImageListSetProfile = function () {
         var that = this;
         this.sets = [
-            { required: false, name: "Square 70x70 logo", type: ImageListSetProfile.smallLogo, preferredResolution: { w: 126, h: 126 }, resolutions: [{ w: 70, h: 70, f: "Square70x70Logo.scale-100.png" }, { w: 126, h: 126, f: "Square70x70Logo.scale-180.png" }, { w: 98, h: 98, f: "Square70x70Logo.scale-140.png" }, { w: 56, h: 56, f: "Square70x70Logo.scale-80.png" }] },
-            { required: false, name: "Square 150x150 logo", type: ImageListSetProfile.largeLogo, preferredResolution: { w: 270, h: 270 }, resolutions: [{ w: 150, h: 150, f: "Squar150x150Logo.scale-100.png" }, { w: 270, h: 270, f: "Square150x150Logo.scale-180.png" }, { w: 210, h: 210, f: "Square150x150Logo.scale-140.png" }, { w: 120, h: 120, f: "Square150x150Logo.scale-80.png" }] },
-            { required: false, name: "Wide 310x150 logo", type: ImageListSetProfile.largeLogo, preferredResolution: { w: 558, h: 270 }, resolutions: [{ w: 310, h: 150, f: "Square310x150Logo.scale-100.png" }, { w: 558, h: 270, f: "Square310x150Logo.scale-180.png" }, { w: 434, h: 210, f: "Square310x150Logo.scale-140.png" }, { w: 248, h: 120, f: "Square310x150Logo.scale-80.png" }] }
+            { required: false, name: "Square 70x70 logo", type: ImageListSetProfile.smallLogo, preferredResolution: { w: 126, h: 126 }, resolutions: [{ w: 126, h: 126, f: "Square70x70Logo.scale-180.png" }, { w: 98, h: 98, f: "Square70x70Logo.scale-140.png" }, { w: 70, h: 70, f: "Square70x70Logo.scale-100.png" }, { w: 56, h: 56, f: "Square70x70Logo.scale-80.png" }] },
+            { required: false, name: "Square 150x150 logo", type: ImageListSetProfile.largeLogo, preferredResolution: { w: 270, h: 270 }, resolutions: [{ w: 270, h: 270, f: "Square150x150Logo.scale-180.png" }, { w: 210, h: 210, f: "Square150x150Logo.scale-140.png" }, { w: 150, h: 150, f: "Squar150x150Logo.scale-100.png" }, { w: 120, h: 120, f: "Square150x150Logo.scale-80.png" }] },
+            { required: false, name: "Wide 310x150 logo", type: ImageListSetProfile.largeLogo, preferredResolution: { w: 558, h: 270 }, resolutions: [{ w: 558, h: 270, f: "Square310x150Logo.scale-180.png" }, { w: 434, h: 210, f: "Square310x150Logo.scale-140.png" }, { w: 310, h: 150, f: "Square310x150Logo.scale-100.png" }, { w: 248, h: 120, f: "Square310x150Logo.scale-80.png" }] },
+            { required: false, name: "Square 310x310 logo", type: ImageListSetProfile.largeLogo, preferredResolution: { w: 558, h: 558 }, resolutions: [{ w: 558, h: 558, f: "Square310x310Logo.scale-180.png" }, { w: 434, h: 434, f: "Square310x310Logo.scale-140.png" }, { w: 310, h: 310, f: "Square310x310Logo.scale-100.png" }, { w: 248, h: 248, f: "Square310x310Logo.scale-80.png" }] }
         ];
 
         this.guessBestImageForSetProfile = function (profileEntry, imageList) {
@@ -57,31 +58,47 @@ var ImageListSetProfile = (function () {
         };
 
         this.updateListSetAsync = function (listSet, imageList) {
-            var promises;
+            var promises,
+                list;
             if (!listSet) {
                 listSet = new WinJS.Binding.List();
             }
 
-            while (listSet.length < that.sets.length) {
-                listSet.push(new ImageList());
+            if (!listSet.length) {
+                while (listSet.length < that.sets.length) {
+                    list = new ImageList();
+                    list.name = that.sets[listSet.length].name;
+                    listSet.push(list);
+                }
             }
-            if (listSet.length > that.sets.length) {
-                listSet.splice(that.sets.length, listSet.length - that.sets.length);
+            else {
+                listSet.forEach(function (list) {
+                    list.clear();
+                });
             }
+
             promises = that.sets.map(function (set, index) {
                 var sourceImage = that.guessBestImageForSetProfile(set, imageList),
-                    promises = [];
+                    promises = [],
+                    list = listSet.getAt(index);
                 if (sourceImage) {
+                    list.name = set.name;
                     promises = set.resolutions.map(function (resolution) {
                         return ImageUtils.fitImageToResolutionAsync(sourceImage.modified.image, resolution).then(function (fittedImage) {
-                            return listSet.getAt(index).addModifiedImageAsync(sourceImage, fittedImage);
+                            return list.addModifiedImageAsync(sourceImage, fittedImage);
+                        }).then(function () {
+                            console.log("Added modified image.");
                         });
                     });
                 }
                 return promises;
             }).reduce(function (total, next) { return total.concat(next); }, []);
 
-            return promises.length ? WinJS.Promise.join(promises).then(function () { return listSet; }) : WinJS.Promise.wrap(listSet);
+            console.log("Joining " + promises.length + " promises...");
+            return WinJS.Promise.join(promises).then(function () {
+                console.log("join complete");
+                return listSet;
+            });
         };
     };
 

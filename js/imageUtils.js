@@ -16,8 +16,8 @@ var ImageUtils = (function () {
             context,
             deferral = new SignalPromise();
 
-        canvas.width = imageScaledWidth;
-        canvas.height = imageScaledHeight;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
 
         context = canvas.getContext("2d");
         if (!canvasColor) {

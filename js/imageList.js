@@ -34,6 +34,7 @@ var ImageList = function () {
         };
 
     this.list = new WinJS.Binding.List();
+    this.name = "Unnamed";
     this.addFileAsync = function (file) {
         return mapFileToEntryAsync(file).then(function (entry) {
             that.list.push(entry);
@@ -44,6 +45,9 @@ var ImageList = function () {
             entry.original = originalEntry.modified;
             that.list.push(entry);
         });
+    };
+    this.clear = function () {
+        that.list.splice(0, that.list.length);
     };
     this.removeEntryById = function (id) {
         var idx = idToIdx(id);
