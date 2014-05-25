@@ -29,9 +29,17 @@
 <body class="borderless fill vertical-scroller">
     <header>
         <h1>App Image Sizer</h1>
+        <hr />
     </header>
-    <input type="file" id="fileInput" />
-    <div id="inputImageListView" class="flex-list horizontal-wrap" data-win-control="WinJS.UI.Repeater">
+    <div class="inline-block image-container center-content" id="addWidget">
+        <div class="center-container">
+            <div class="block">Press to add images</div>
+            <img class="block image-content" src="images/plus.svg" width="100px" height="100px" />
+            <input class="display-none" type="file" id="fileInput" />
+            <div class="block">Or drag and drop</div>
+        </div>
+    </div>
+    <div id="inputImageListView" class="flex-list horizontal-wrap inline-block" data-win-control="WinJS.UI.Repeater">
         <section class="inline-block" data-win-bind="id: id">
             <button class="block removeImage control">X</button>
             <div class="image-container center-container bordered">
@@ -57,7 +65,7 @@
             </div>
         </div>
     </div>
-
+    <hr />
     <footer>
         <h2>Credits</h2>
         <ul>

@@ -23,6 +23,7 @@ var ImageUtils = (function () {
         if (!canvasColor) {
             context.drawImage(image, 0, 0, image.width, image.height, 0, 0, image.width, image.height);
             canvasColor = ImageUtils.canvasDataToColor(context.getImageData(0, 0, 1, 1));
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
         }
         context.fillStyle = canvasColor;
         context.fillRect(0, 0, canvas.width, canvas.height);

@@ -8,6 +8,8 @@
         WinJS.UI.processAll().then(function () {
             return inputUI.initializeAsync(inputImageList);
         }).then(function () {
+            return imageListSetProfile.initializeAsync();
+        }).then(function() {
             return outputUI.initializeAsync(inputImageList, imageListSetProfile);
         });
     });

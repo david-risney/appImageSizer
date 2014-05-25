@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="40" width="120" y="80" x="40" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <rect height="120" width="40" y="40" x="80" stroke-width="0" fill="#000000" id="svg_2" stroke="#000000"/>
+ </g>
+</svg>

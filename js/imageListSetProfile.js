@@ -8,6 +8,7 @@ var ImageListSetProfile = (function () {
             return partitions;
         }, new Map());
     },
+    placeholderImageEntry,
     mapToArray = function (map) {
         var array = [];
         map.forEach(function (value, key) {
@@ -41,6 +42,35 @@ var ImageListSetProfile = (function () {
             { required: false, name: "Square 310x310 logo", type: ImageListSetProfile.largeLogo, preferredResolution: { w: 558, h: 558 }, resolutions: [{ w: 558, h: 558, f: "Square310x310Logo.scale-180.png" }, { w: 434, h: 434, f: "Square310x310Logo.scale-140.png" }, { w: 310, h: 310, f: "Square310x310Logo.scale-100.png" }, { w: 248, h: 248, f: "Square310x310Logo.scale-80.png" }] }
         ];
 
+        this.initializeAsync = function () {
+            var result = WinJS.Promise.wrap();
+            placeholderImageEntry = {
+                id: -1,
+                original: {
+                    blob: null,
+                    uri: "images/placeholder.png",
+                    image: null
+                }
+            };
+            placeholderImageEntry.modified = placeholderImageEntry.original;
+            result = WinJS.xhr({ url: "images/placeholder.png", responseType: "blob" }).then(function (xhr) {
+                var deferral = new SignalPromise();
+                placeholderImageEntry.original.blob = xhr.response;
+                placeholderImageEntry.original.image = document.createElement("img");
+                placeholderImageEntry.original.image.onload = function () {
+                    deferral.complete();
+                };
+                placeholderImageEntry.original.image.onerror = function () {
+                    deferral.error();
+                };
+                placeholderImageEntry.original.image.src = "images/placeholder.png";
+
+                return deferral.promise;
+            });
+
+            return result;
+        };
+
         this.guessBestImageForSetProfile = function (profileEntry, imageList) {
             var preferredResolution = profileEntry.preferredResolution,
                 images = imageList.list.concat(),
@@ -53,7 +83,7 @@ var ImageListSetProfile = (function () {
                 return arr[0].value.sort(imageSizeSort.bind(null, preferredResolution))[0];
             }
             else {
-                return null;
+                return placeholderImageEntry;
             }
         };
 
@@ -81,8 +111,8 @@ var ImageListSetProfile = (function () {
                 var sourceImage = that.guessBestImageForSetProfile(set, imageList),
                     promises = [],
                     list = listSet.getAt(index);
+
                 if (sourceImage) {
-                    list.name = set.name;
                     promises = set.resolutions.map(function (resolution) {
                         return ImageUtils.fitImageToResolutionAsync(sourceImage.modified.image, resolution).then(function (fittedImage) {
                             return list.addModifiedImageAsync(sourceImage, fittedImage);
@@ -91,6 +121,7 @@ var ImageListSetProfile = (function () {
                         });
                     });
                 }
+
                 return promises;
             }).reduce(function (total, next) { return total.concat(next); }, []);
 

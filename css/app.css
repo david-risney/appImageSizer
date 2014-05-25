@@ -41,6 +41,9 @@
 .inline-block {
     display: inline-block;
 }
+.display-none {
+    display: none;
+}
 
 .flex-list {
     display: flex;
@@ -59,6 +62,8 @@
 
 .center-container {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -73,6 +78,7 @@
 .image-container {
     width: 200px;
     height: 200px;
+    background-color: lightgray;
 }
 .image-content {
     max-height: 200px;
