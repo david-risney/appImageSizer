@@ -45,6 +45,7 @@ var ImageList = (function () {
             return mapFileToEntryAsync(imageBlob).then(function (entry) {
                 entry.original = originalEntry.modified;
                 that.push(entry);
+                return entry;
             });
         };
         that.clear = function () {

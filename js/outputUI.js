@@ -5,6 +5,19 @@ var OutputUI = function () {
         outputImageListList,
         imageListListProfile;
 
+    function handleDownloadZip() {
+        var files = outputImageListList.map(function (outputImageList) {
+                return outputImageList.map(function (outputImage) {
+                    return { name: outputImage.resolution.f, blob: outputImage.modified.blob };
+                });
+            }).reduce(function (total, next) {
+                return total.concat(next);
+            }, []);
+        ZipPromise.filesToZipBlobAsync(files).then(function (zipBlob) {
+            saveAs(zipBlob, "appImages.zip");
+        });
+    }
+
     function selectionChangedHandler() {
         var id = parseInt(this.querySelector("option:checked").getAttribute("value"), 10),
             setName = this.getAttribute("data-set-name");
@@ -71,11 +84,16 @@ var OutputUI = function () {
     }
 
     this.initializeAsync = function (inputImageListIn, imageListListProfileIn, outputImageListListIn) {
+        var downloadWidgetElement;
+
         inputImageList = inputImageListIn;
         imageListListProfile = imageListListProfileIn;
         outputImageListList = outputImageListListIn;        
 
         outputImageListListView = document.getElementById("outputImageListListView");
+        
+        downloadWidgetElement = document.getElementById("downloadWidget");
+        downloadWidgetElement.addEventListener("click", handleDownloadZip);
 
         outputImageListList.addEventListener("changed", updateAll);
         inputImageList.addEventListener("changed", updateAll);

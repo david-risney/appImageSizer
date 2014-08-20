@@ -40,11 +40,30 @@ var ImageListListProfile = (function () {
             outputImageListList = new ImageListList(),
             inputImageList;
 
+        // Win8 app logo profile
+        sets = new ArrayWithEvent(
+            { name: "Square 150x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 270, h: 270, f: "Square150x150Logo.scale-180.png" }, { w: 210, h: 210, f: "Square150x150Logo.scale-140.png" }, { w: 150, h: 150, f: "Square150x150Logo.scale-100.png" }, { w: 120, h: 120, f: "Square150x150Logo.scale-80.png" }] },
+            { name: "Wide 310x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 558, h: 270, f: "Wide310x150Logo.scale-180.png" }, { w: 434, h: 210, f: "Wide310x150Logo.scale-140.png" }, { w: 310, h: 150, f: "Wide310x150Logo.scale-100.png" }, { w: 248, h: 120, f: "Wide310x150Logo.scale-80.png" }] },
+            { name: "Square 30x30 logo", type: ImageListListProfile.smallLogo, resolutions: [
+                { w: 54, h: 54, f: "Square30x30Logo.scale-180.png" }, { w: 42, h: 42, f: "Square30x30Logo.scale-140.png" }, { w: 30, h: 30, f: "Square30x30Logo.scale-100.png" }, { w: 24, h: 24, f: "Square30x30Logo.scale-80.png" },
+                { w: 256, h: 256, f: "Square30x30Logo.target-256.png" }, { w: 48, h: 48, f: "Square30x30Logo.target-48.png" }, { w: 32, h: 32, f: "Square30x30Logo.target-32.png" }, { w: 16, h: 16, f: "Square30x30Logo.target-16.png" }
+            ] },
+            { name: "Store logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 90, h: 90, f: "StoreLogo.scale-180.png" }, { w: 70, h: 70, f: "StoreLogo.scale-140.png" }, { w: 50, h: 50, f: "StoreLogo.scale-100.png" }] }
+        );
+
+        // Win8.1 app logo profile
         sets = new ArrayWithEvent(
             { name: "Square 70x70 logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 126, h: 126, f: "Square70x70Logo.scale-180.png" }, { w: 98, h: 98, f: "Square70x70Logo.scale-140.png" }, { w: 70, h: 70, f: "Square70x70Logo.scale-100.png" }, { w: 56, h: 56, f: "Square70x70Logo.scale-80.png" }] },
-            { name: "Square 150x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 270, h: 270, f: "Square150x150Logo.scale-180.png" }, { w: 210, h: 210, f: "Square150x150Logo.scale-140.png" }, { w: 150, h: 150, f: "Squar150x150Logo.scale-100.png" }, { w: 120, h: 120, f: "Square150x150Logo.scale-80.png" }] },
-            { name: "Wide 310x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 558, h: 270, f: "Square310x150Logo.scale-180.png" }, { w: 434, h: 210, f: "Square310x150Logo.scale-140.png" }, { w: 310, h: 150, f: "Square310x150Logo.scale-100.png" }, { w: 248, h: 120, f: "Square310x150Logo.scale-80.png" }] },
-            { name: "Square 310x310 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 558, h: 558, f: "Square310x310Logo.scale-180.png" }, { w: 434, h: 434, f: "Square310x310Logo.scale-140.png" }, { w: 310, h: 310, f: "Square310x310Logo.scale-100.png" }, { w: 248, h: 248, f: "Square310x310Logo.scale-80.png" }] }
+            { name: "Square 150x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 270, h: 270, f: "Square150x150Logo.scale-180.png" }, { w: 210, h: 210, f: "Square150x150Logo.scale-140.png" }, { w: 150, h: 150, f: "Square150x150Logo.scale-100.png" }, { w: 120, h: 120, f: "Square150x150Logo.scale-80.png" }] },
+            { name: "Wide 310x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 558, h: 270, f: "Wide310x150Logo.scale-180.png" }, { w: 434, h: 210, f: "Wide310x150Logo.scale-140.png" }, { w: 310, h: 150, f: "Wide310x150Logo.scale-100.png" }, { w: 248, h: 120, f: "Wide310x150Logo.scale-80.png" }] },
+            { name: "Square 310x310 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 558, h: 558, f: "Square310x310Logo.scale-180.png" }, { w: 434, h: 434, f: "Square310x310Logo.scale-140.png" }, { w: 310, h: 310, f: "Square310x310Logo.scale-100.png" }, { w: 248, h: 248, f: "Square310x310Logo.scale-80.png" }] },
+            { name: "Square 30x30 logo", type: ImageListListProfile.smallLogo, resolutions: [
+                { w: 54, h: 54, f: "Square30x30Logo.scale-180.png" }, { w: 42, h: 42, f: "Square30x30Logo.scale-140.png" }, { w: 30, h: 30, f: "Square30x30Logo.scale-100.png" }, { w: 24, h: 24, f: "Square30x30Logo.scale-80.png" },
+                { w: 256, h: 256, f: "Square30x30Logo.target-256.png" }, { w: 48, h: 48, f: "Square30x30Logo.target-48.png" }, { w: 32, h: 32, f: "Square30x30Logo.target-32.png" }, { w: 16, h: 16, f: "Square30x30Logo.target-16.png" }
+            ] },
+            { name: "Store logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 90, h: 90, f: "StoreLogo.scale-180.png" }, { w: 70, h: 70, f: "StoreLogo.scale-140.png" }, { w: 50, h: 50, f: "StoreLogo.scale-100.png" }] },
+            { name: "Badge logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 43, h: 43, f: "BadgeLogo.scale-180.png" }, { w: 33, h: 33, f: "BadgeLogo.scale-140.png" }, { w: 24, h: 24, f: "BadgeLogo.scale-100.png" }] },
+            { name: "Splash screen", type: ImageListListProfile.splashScreen, resolutions: [{ w: 1116, h: 540, f: "SplashScreen.scale-180.png" }, { w: 868, h: 420, f: "SplashScreen.scale-140.png" }, { w: 620, h: 300, f: "SplashScreen.scale-100.png" }] }
         );
 
         this.initializeAsync = function (inputImageList) {
@@ -140,7 +159,8 @@ var ImageListListProfile = (function () {
                 promises = set.resolutions.map(function (resolution) {
                     return ImageUtils.fitImageToResolutionAsync(sourceImage.modified.image, resolution).then(function (fittedImage) {
                         return outputImageList.addModifiedImageAsync(sourceImage, fittedImage);
-                    }).then(function () {
+                    }).then(function (entry) {
+                        entry.resolution = resolution;
                         console.log("Added modified image.");
                     });
                 });

@@ -19,6 +19,7 @@
     <script src="js/signalPromise.js"></script>
     <script src="js/eventTarget.js"></script>
     <script src="js/arrayWithEvent.js"></script>
+    <script src="js/zipPromise.js"></script>
     <script src="js/objectToHtml.js"></script>
     <script src="js/imageUtils.js"></script>
     <script src="js/imageList.js"></script>
@@ -34,7 +35,7 @@
     <hr />
 
     <div id="inputImageListView" class="flex-list horizontal-wrap inline-block">
-        <div class="inline-block image-container center-content" id="addWidget">
+        <div class="inline-block image-container center-content bordered" id="addWidget">
             <div class="center-container">
                 <div class="block">Press to add images</div>
                 <img class="block image-content" src="images/plus.svg" width="100px" height="100px" />
@@ -52,6 +53,15 @@
     </div>
 
     <hr />
+
+    <div class="inline-block image-container center-content bordered" id="downloadWidget">
+        <div class="center-container">
+            <div class="block">Download images</div>
+            <img class="block image-content" src="images/download.svg" width="100px" height="100px" />
+        </div>
+    </div>
+
+    <hr/>
 
     <footer>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
