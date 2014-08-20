@@ -3,22 +3,16 @@
         var inputImageList = new ImageList(),
             inputUI = new InputUI(),
             outputUI = new OutputUI(),
-            imageListSetProfile = new ImageListSetProfile();
+            imageListListProfile = new ImageListListProfile(),
+            outputImageListList;
 
-        WinJS.UI.processAll().then(function () {
+        imageListListProfile.initializeAsync(inputImageList).then(function (outputImageListListIn) {
+            outputImageListList = outputImageListListIn;
             return inputUI.initializeAsync(inputImageList);
         }).then(function () {
-            return imageListSetProfile.initializeAsync();
-        }).then(function() {
-            return outputUI.initializeAsync(inputImageList, imageListSetProfile);
+            return outputUI.initializeAsync(inputImageList, imageListListProfile, outputImageListList);
         });
     });
 
-    window.onbeforeunload = function () {
-        //return "Leaving will destroy your work.";
-    };
-
     zip.workerScriptsPath = "lib/zip/";
-
-    WinJS.Application.start();
 }());

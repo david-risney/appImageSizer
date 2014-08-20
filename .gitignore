@@ -1,1 +1,4 @@
 *~
+*.suo
+*.sln
+Thumbs.db

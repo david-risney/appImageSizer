@@ -60,14 +60,22 @@
     flex-direction: row;
 }
 
+.inline-center-container {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 .center-container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
     align-content: center;
-    align-items: center;
-    
+    align-items: center;    
 }
 .center-content {
 

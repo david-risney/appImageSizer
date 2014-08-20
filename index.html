@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html class="borderless fill noserif">
+<html class="borderless fill noserifs">
 <head>
     <title>App Image Sizer</title>
-    <link type="text/css" rel="stylesheet" href="lib/winjs/css/ui-light.css" />
     <link type="text/css" rel="stylesheet" href="css/app.css" />
 
     <!-- Shims -->
@@ -14,58 +13,46 @@
 
     <!-- Libraries -->
     <script src="lib/winjs/js/base.js"></script>
-    <script src="lib/winjs/js/ui.js"></script>
     <script src="lib/zip/zip.js"></script>
 
     <!-- App Code -->
     <script src="js/signalPromise.js"></script>
+    <script src="js/eventTarget.js"></script>
+    <script src="js/arrayWithEvent.js"></script>
+    <script src="js/objectToHtml.js"></script>
     <script src="js/imageUtils.js"></script>
     <script src="js/imageList.js"></script>
-    <script src="js/imageListSetProfile.js"></script>
+    <script src="js/imageListList.js"></script>
+    <script src="js/imageListListProfile.js"></script>
     <script src="js/inputUI.js"></script>
     <script src="js/outputUI.js"></script>
     <script src="js/app.js"></script>
 </head>
 <body class="borderless fill vertical-scroller">
-    <header>
-        <h1>App Image Sizer</h1>
-        <hr />
-    </header>
-    <div class="inline-block image-container center-content" id="addWidget">
-        <div class="center-container">
-            <div class="block">Press to add images</div>
-            <img class="block image-content" src="images/plus.svg" width="100px" height="100px" />
-            <input class="display-none" type="file" id="fileInput" />
-            <div class="block">Or drag and drop</div>
-        </div>
-    </div>
-    <div id="inputImageListView" class="flex-list horizontal-wrap inline-block" data-win-control="WinJS.UI.Repeater">
-        <section class="inline-block" data-win-bind="id: id">
-            <button class="block removeImage control">X</button>
-            <div class="image-container center-container bordered">
-                <img class="block image-content center-content" data-win-bind="src: modified.uri" />
-            </div>
-            <div><span data-win-bind="textContent: modified.image.width"></span> x <span data-win-bind="textContent: modified.image.height"></span></div>
-        </section>
-    </div>
-    <div>
-        <button id="updateOutputFromInput">Update</button>
-    </div>
+    <header><h1>App Image Sizer</h1></header>
+
     <hr />
-    <div id="outputImageListSetView" class="flex-list vertical-nowrap" data-win-control="WinJS.UI.Repeater">
-        <div>
-            <h2><span data-win-bind="textContent: this.name"></span></h2>
-            <div class="flex-list horizontal-wrap" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data: this.list">
-                <section class="inline-block" data-win-bind="id: id">
-                    <div class="image-container center-container bordered">
-                        <img class="block image-content center-content" data-win-bind="src: modified.uri" />
-                    </div>
-                    <div><span data-win-bind="textContent: modified.image.width"></span> x <span data-win-bind="textContent: modified.image.height"></span></div>
-                </section>
+
+    <div id="inputImageListView" class="flex-list horizontal-wrap inline-block">
+        <div class="inline-block image-container center-content" id="addWidget">
+            <div class="center-container">
+                <div class="block">Press to add images</div>
+                <img class="block image-content" src="images/plus.svg" width="100px" height="100px" />
+                <input class="display-none" type="file" id="fileInput" multiple />
+                <div class="block">Or drag and drop</div>
             </div>
         </div>
     </div>
+
+
+    <hr/>
+
+    <div id="outputImageListListView" class="flex-list vertical-nowrap">
+
+    </div>
+
     <hr />
+
     <footer>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- GitHub -->
@@ -76,7 +63,7 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        <h2>Credits</h2>
+        <h2>Libs, Credits, &amp; Dependencies</h2>
         <ul>
             <li><a href="http://gildas-lormeau.github.io/zip.js/core-api.html">zip.js</a></li>
             <li><a href="https://github.com/eligrey/FileSaver.js">FileSaver.js</a></li>
