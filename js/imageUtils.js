@@ -20,10 +20,16 @@ var ImageUtils = (function () {
         canvas.height = canvasHeight;
 
         context = canvas.getContext("2d");
-        if (!canvasColor) {
-            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, image.width, image.height);
-            canvasColor = ImageUtils.canvasDataToColor(context.getImageData(0, 0, 1, 1));
-            context.clearRect(0, 0, canvasWidth, canvasHeight);
+        try {
+            if (!canvasColor) {
+                context.drawImage(image, 0, 0, image.width, image.height, 0, 0, image.width, image.height);
+                canvasColor = ImageUtils.canvasDataToColor(context.getImageData(0, 0, 1, 1));
+                context.clearRect(0, 0, canvasWidth, canvasHeight);
+            }
+        }
+        catch (e) {
+            console.log("Unable to pick out the (0, 0) pixel info to guess background color: " + e + ", " + image.src);
+            canvasColor = "rgb(0, 0, 0, 0)";
         }
         context.fillStyle = canvasColor;
         context.fillRect(0, 0, canvas.width, canvas.height);
