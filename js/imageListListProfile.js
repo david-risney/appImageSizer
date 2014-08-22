@@ -63,7 +63,12 @@ var ImageListListProfile = (function () {
             ] },
             { name: "Store logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 90, h: 90, f: "StoreLogo.scale-180.png" }, { w: 70, h: 70, f: "StoreLogo.scale-140.png" }, { w: 50, h: 50, f: "StoreLogo.scale-100.png" }] },
             { name: "Badge logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 43, h: 43, f: "BadgeLogo.scale-180.png" }, { w: 33, h: 33, f: "BadgeLogo.scale-140.png" }, { w: 24, h: 24, f: "BadgeLogo.scale-100.png" }] },
-            { name: "Splash screen", type: ImageListListProfile.splashScreen, resolutions: [{ w: 1116, h: 540, f: "SplashScreen.scale-180.png" }, { w: 868, h: 420, f: "SplashScreen.scale-140.png" }, { w: 620, h: 300, f: "SplashScreen.scale-100.png" }] }
+            { name: "Splash screen", type: ImageListListProfile.splashScreen, resolutions: [{ w: 1116, h: 540, f: "SplashScreen.scale-180.png" }, { w: 868, h: 420, f: "SplashScreen.scale-140.png" }, { w: 620, h: 300, f: "SplashScreen.scale-100.png" }] },
+            { name: "Promotional Image 1", type: ImageListListProfile.promotional, resolutions: [{ w: 414, h: 180, f: "Promotional-414x180.png" }] },
+            { name: "Promotional Image 2", type: ImageListListProfile.promotional, resolutions: [{ w: 414, h: 468, f: "Promotional-414x468.png" }] },
+            { name: "Promotional Image 3", type: ImageListListProfile.promotional, resolutions: [{ w: 558, h: 558, f: "Promotional-558x558.png" }] },
+            { name: "Promotional Image 4", type: ImageListListProfile.promotional, resolutions: [{ w: 558, h: 756, f: "Promotional-558x756.png" }] },
+            { name: "Promotional Image 5", type: ImageListListProfile.promotional, resolutions: [{ w: 846, h: 468, f: "Promotional-846x468.png" }] }
         );
 
         this.initializeAsync = function (inputImageList) {
@@ -198,7 +203,7 @@ var ImageListListProfile = (function () {
         };
     };
 
-    ImageListListProfile.types = ["smallLogo", "largeLogo", "splashScreen"].reduce(function (types, typeName) { types[typeName] = typeName; return types; }, {});
+    ImageListListProfile.types = ["smallLogo", "largeLogo", "splashScreen", "promotional"].reduce(function (types, typeName) { types[typeName] = typeName; return types; }, {});
 
     return ImageListListProfile;
 }());
