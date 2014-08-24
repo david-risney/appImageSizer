@@ -19,10 +19,16 @@ var InputUI = function () {
         });
     }
 
+    function displayError(error) {
+        document.getElementById("user-message").textContent = error.message;
+    }
+
     this.initializeAsync = function (inputImageList, imageListListProfileIn) {
         imageListListProfile = imageListListProfileIn;
 
         updateProfileList();
+
+        imageListListProfile.addEventListener("error", displayError);
 
         fileInput = document.getElementById("fileInput");
         inputImageListView = document.getElementById("inputImageListView");
@@ -33,7 +39,7 @@ var InputUI = function () {
                     return function () {
                         return inputImageList.addFileAsync(file);
                     }
-                }).reduce(function (total, next) { return total.then(next); }, WinJS.Promise.wrap());
+                }).reduce(function (total, next) { return total.then(next, displayError); }, WinJS.Promise.wrap());
             }
         });
 
@@ -59,7 +65,7 @@ var InputUI = function () {
                                     return inputImageList.addFileAsync(xhr.response);
                                 });
                             };
-                        }).reduce(function (total, next) { return total.then(next); }, WinJS.Promise.wrap());
+                        }).reduce(function (total, next) { return total.then(next, displayError); }, WinJS.Promise.wrap());
                         break;
 
                     default:
@@ -76,9 +82,11 @@ var InputUI = function () {
             evt.stopPropagation();
             evt.preventDefault();
 
-            Array.from(evt.dataTransfer.files).forEach(function(file) {
-                inputImageList.addFileAsync(file);
-            });
+            Array.from(evt.dataTransfer.files).map(function (file) {
+                return function () {
+                    return inputImageList.addFileAsync(file);
+                }
+            }).reduce(function (total, next) { return total.then(next, displayError); }, WinJS.Promise.wrap());
         }
 
         function handleDragOver(evt) {

@@ -28,7 +28,7 @@ var ImageUtils = (function () {
             }
         }
         catch (e) {
-            console.log("Unable to pick out the (0, 0) pixel info to guess background color: " + e + ", " + image.src);
+            deferral.error(new Error("Your browser has bugs with this image format. Please use a different image or a different browser."));
             canvasColor = "rgb(0, 0, 0, 0)";
         }
         context.fillStyle = canvasColor;

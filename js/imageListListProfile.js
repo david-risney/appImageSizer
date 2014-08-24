@@ -43,6 +43,7 @@ var ImageListListProfile = (function () {
                 data: new ArrayWithEvent()
             },
             outputImageListList = new ImageListList(),
+            eventTarget = new EventTarget(this, ["error"]),
             inputImageList;
 
         // Win8 app logo profile
@@ -231,6 +232,8 @@ var ImageListListProfile = (function () {
         function profileSetInfoChange() {
             WinJS.Promise.join(profile.data.map(function (set) { return profileSetToOutputImageListAsync(set, inputImageList, new ImageList()); })).then(function (imageLists) {
                 outputImageListList.splice.apply(outputImageListList, [0, outputImageListList.length].concat(imageLists));
+            }, function (error) {
+                eventTarget.dispatchErrorEvent(error);
             });
         }
 
@@ -242,6 +245,8 @@ var ImageListListProfile = (function () {
             inputImageList.addEventListener("change", function () {
                 WinJS.Promise.join(profile.data.map(function (set, setIndex) { return profileSetToOutputImageListAsync(set, inputImageList, outputImageListList[setIndex]); })).then(function (imageLists) {
                     console.log("update finished.");
+                }, function (error) {
+                    eventTarget.dispatchErrorEvent(error);
                 });
             });
 

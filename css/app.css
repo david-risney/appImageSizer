@@ -80,6 +80,11 @@
 .center-content {
 
 }
+
+.medium-margin {
+    margin: 25px;
+}
+
 .bordered {
     border: black dashed 1px;
     margin: 1px;

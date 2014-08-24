@@ -22,10 +22,15 @@ var ImageList = (function () {
 
                 image.onload = function () {
                     entry.modified.image = entry.original.image = image;
-                    deferral.complete(entry);
+                    if (image.width !== 0 && image.height !== 0) {
+                        deferral.complete(entry);
+                    }
+                    else {
+                        deferral.error(new Error("Your browser has bugs with this image format. Please use different images or a different browser."));
+                    }
                 };
                 image.onerror = function () {
-                    deferral.error();
+                    deferral.error(new Error("Failed to open image."));
                 };
                 image.src = entry.modified.uri;
                 return deferral.promise;
