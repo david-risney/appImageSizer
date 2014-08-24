@@ -73,7 +73,7 @@ var OutputUI = function () {
                 });
             }
 
-            outputImageList.addEventListener("changed", updateImageList);
+            outputImageList.addEventListener("change", updateImageList);
             // imageList.addEventListener("changed", updateAll);
             updateImageList();
 
@@ -95,8 +95,8 @@ var OutputUI = function () {
         downloadWidgetElement = document.getElementById("downloadWidget");
         downloadWidgetElement.addEventListener("click", handleDownloadZip);
 
-        outputImageListList.addEventListener("changed", updateAll);
-        inputImageList.addEventListener("changed", updateAll);
+        outputImageListList.addEventListener("change", updateAll);
+        inputImageList.addEventListener("change", updateAll);
         updateAll();
     };
 };

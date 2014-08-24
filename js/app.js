@@ -8,7 +8,7 @@
 
         imageListListProfile.initializeAsync(inputImageList).then(function (outputImageListListIn) {
             outputImageListList = outputImageListListIn;
-            return inputUI.initializeAsync(inputImageList);
+            return inputUI.initializeAsync(inputImageList, imageListListProfile);
         }).then(function () {
             return outputUI.initializeAsync(inputImageList, imageListListProfile, outputImageListList);
         });

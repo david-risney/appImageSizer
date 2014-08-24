@@ -3,9 +3,27 @@ var InputUI = function () {
         fileInput,
         inputImageListElement,
         fileInputChangeHandler,
-        addWidgetElement;
+        addWidgetElement,
+        imageListListProfile;
 
-    this.initializeAsync = function (inputImageList) {
+    function updateProfileList() {
+        var profileListElement = document.getElementById("profileList");
+        profileListElement.innerHTML = "";
+        imageListListProfile.getDefaultProfiles().map(function (profile) {
+            return ObjectToHtml({ option: { value: profile.id }, t: profile.name });
+        }).forEach(function (e) { profileListElement.appendChild(e); });
+
+        profileListElement.addEventListener("change", function () {
+            var id = parseInt(this.querySelector("option:checked").getAttribute("value"), 10);
+            imageListListProfile.setProfile(imageListListProfile.getDefaultProfiles().filter(function (profile) { return profile.id === id })[0]);
+        });
+    }
+
+    this.initializeAsync = function (inputImageList, imageListListProfileIn) {
+        imageListListProfile = imageListListProfileIn;
+
+        updateProfileList();
+
         fileInput = document.getElementById("fileInput");
         inputImageListView = document.getElementById("inputImageListView");
         fileInput.addEventListener("change", function (event) {
@@ -73,7 +91,7 @@ var InputUI = function () {
         addWidgetElement.addEventListener('dragover', handleDragOver, false);
         addWidgetElement.addEventListener('drop', handleDrop, false);
 
-        inputImageList.addEventListener("changed", function () {
+        inputImageList.addEventListener("change", function () {
             Array.from(inputImageListView.querySelectorAll(".image-entry")).forEach(function (element) {
                 element.parentElement.removeChild(element);
             });
