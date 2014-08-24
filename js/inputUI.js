@@ -11,15 +11,47 @@ var InputUI = function () {
         fileInput.addEventListener("change", function (event) {
             var files;
             if (event.target && event.target.files) {
-                Array.from(event.target.files).forEach(function (file) {
-                    inputImageList.addFileAsync(file);
-                });
+                Array.from(event.target.files).map(function (file) {
+                    return function () {
+                        return inputImageList.addFileAsync(file);
+                    }
+                }).reduce(function (total, next) { return total.then(next); }, WinJS.Promise.wrap());
             }
         });
 
         addWidgetElement = document.getElementById("addWidget");
         addWidgetElement.addEventListener("click", function () {
             fileInput.click();
+        });
+
+        document.location.search.substr(1).split("&").filter(function (part) { return part.length > 0; }).forEach(function (part) {
+            var decodedNameAndValue = part.split("=").map(decodeURIComponent),
+                name,
+                value;
+
+            try {
+                name = decodedNameAndValue[0];
+                value = decodedNameAndValue[1];
+
+                switch (name) {
+                    case "add":
+                        value.split(",").map(decodeURIComponent).map(function (uri) {
+                            return function () {
+                                return WinJS.xhr({ url: uri, responseType: "blob" }).then(function (xhr) {
+                                    return inputImageList.addFileAsync(xhr.response);
+                                });
+                            };
+                        }).reduce(function (total, next) { return total.then(next); }, WinJS.Promise.wrap());
+                        break;
+
+                    default:
+                        console.error("Unknown URI query parameter: " + decodedNameAndValue.join(", "));
+                        break;
+                }
+            }
+            catch (e) {
+                console.error("Invalid URI query parameter: " + decodedNameAndValue.join(", "));
+            }
         });
 
         function handleDrop(evt) {

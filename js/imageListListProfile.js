@@ -120,7 +120,7 @@ var ImageListListProfile = (function () {
                 explicitGuesses[profileEntryName] = ensureInt(imageEntryId);
             }
             else {
-                delete explicitGuess[profileEntryName];
+                delete explicitGuesses[profileEntryName];
             }
 
             if (oldProfileEntryValue != explicitGuesses[profileEntryName]) {

@@ -3,21 +3,22 @@ var ImageList = (function () {
         var that = ArrayWithEvent.apply(null, arguments),
             nextId = 0,
             mapFileToEntryAsync = function (file) {
-                var entry = {
-                    id: nextId++,
-                    list: that,
-                    name: file.name,
-                    original: {
-                        blob: file,
-                        uri: URL.createObjectURL(file)
+                var id = ++nextId,
+                    entry = {
+                        id: id,
+                        list: that,
+                        name: file.name || "Image " + id,
+                        original: {
+                            blob: file,
+                            uri: URL.createObjectURL(file)
+                        },
+                        modified: {
+                            blob: file,
+                            uri: URL.createObjectURL(file)
+                        }
                     },
-                    modified: {
-                        blob: file,
-                        uri: URL.createObjectURL(file)
-                    }
-                },
-                deferral = new SignalPromise(),
-                image = document.createElement("img");
+                    deferral = new SignalPromise(),
+                    image = document.createElement("img");
 
                 image.onload = function () {
                     entry.modified.image = entry.original.image = image;
