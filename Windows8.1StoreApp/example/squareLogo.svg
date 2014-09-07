@@ -1,0 +1,48 @@
+<svg width="450" height="450" viewBox="0 0 450 450" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <symbol id="svg_3" xmlns="http://www.w3.org/2000/svg">
+   <rect id="svg_5" x="8" y="8" width="84" height="84" rx="20" fill="url(#svg_1)" stroke="url(#svg_2)" stroke-width="16px"/>
+  </symbol>
+  <linearGradient id="svg_1" x2="0" y2="1">
+   <stop offset="0.05" stop-color="#FD6"/>
+   <stop offset="0.95" stop-color="#F80"/>
+  </linearGradient>
+  <linearGradient id="svg_2" x2="0" y2="1">
+   <stop offset="0.05" stop-color="#F80"/>
+   <stop offset="0.95" stop-color="#FD6"/>
+  </linearGradient>
+  <style type="text/css">@font-face {
+      font-family: MyFancyFont;
+      src: url('Cedarville-Cursive.woff');
+    }</style>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <rect id="backgroundRect" x="0" y="0" width="100%" height="100%" fill="#EAD8C7"/>
+  <text x="84" fill="black" y="150" font-size="100" font-family="MyFancyFont" id="svg_4">Words</text>
+  <text x="130" fill="black" y="251" font-size="100" font-family="MyFancyFont" id="svg_22">with</text>
+  <g transform="rotate(-8 225.99864196777364,344.9886779785156) translate(0,400) scale(0.5) " id="svg_6">
+   <g id="svg_7">
+    <use xlink:href="#svg_3" transform="matrix(1.6,0,0,1.6,32.00000000000001,-208.00000000000003) " y="13.125" x="11.25" id="svg_8"/>
+    <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Consolas" font-size="130" y="-66" x="130" stroke-width="0" stroke="#000000" fill="#000000" id="svg_9">H</text>
+   </g>
+   <g id="svg_10">
+    <use xlink:href="#svg_3" transform="matrix(1.5999999999999999,0,0,1.5999999999999999,193,-208.00000000000017) " y="13.125" x="11.25" id="svg_11"/>
+    <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Consolas" font-size="130" y="-66" x="291" stroke-width="0" stroke="#000000" fill="#000000" id="svg_12">I</text>
+   </g>
+   <g id="svg_13">
+    <use xlink:href="#svg_3" transform="matrix(1.5999999999999999,0,0,1.5999999999999999,353.9999999999999,-208.00000000000017) " y="13.125" x="11.25" id="svg_14"/>
+    <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Consolas" font-size="130" y="-66" x="452" stroke-width="0" stroke="#000000" fill="#000000" id="svg_15">N</text>
+   </g>
+   <g id="svg_16">
+    <use xlink:href="#svg_3" transform="matrix(1.5999999999999999,0,0,1.5999999999999999,514.9999999999999,-208.00000000000017) " y="13.125" x="11.25" id="svg_17"/>
+    <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Consolas" font-size="130" y="-66" x="613" stroke-width="0" stroke="#000000" fill="#000000" id="svg_18">T</text>
+   </g>
+   <g id="svg_19">
+    <use xlink:href="#svg_3" transform="matrix(1.5999999999999999,0,0,1.5999999999999999,676,-208.00000000000017) " y="13.125" x="11.25" id="svg_20"/>
+    <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="Consolas" font-size="130" y="-66" x="774" stroke-width="0" stroke="#000000" fill="#000000" id="svg_21">S</text>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -17,12 +17,20 @@ var OutputUI = function () {
             if (typeof Windows !== "unknown") {
                 var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                 savePicker.defaultFileExtension = ".zip";
-                savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+                //savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
                 savePicker.fileTypeChoices.insert("Zip file", [".zip"]);
                 savePicker.suggestedFileName = "appImages.zip";
 
-                savePicker.pickSingleFileAsync().then(function (file) {
-                    
+                return savePicker.pickSaveFileAsync().then(function (file) {
+                    var stream = zipBlob.msDetachStream(),
+                        reader = new Windows.Storage.Streams.DataReader(stream);
+
+                    reader.loadAsync(stream.size).then(function () {
+                        var buffer = reader.detachBuffer();
+                        return Windows.Storage.FileIO.writeBufferAsync(file, buffer);
+                    });
+                }, function (error) {
+                    console.error("Error: " + error);
                 });
             }
             else {
