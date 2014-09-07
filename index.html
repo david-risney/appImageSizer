@@ -5,8 +5,8 @@
     <link type="text/css" rel="stylesheet" href="css/app.css" />
 
     <!-- Shims -->
-    <script src="lib/es/es5-shim.js"></script>
-    <script src="lib/es/es6-shim.js"></script>
+    <script src="lib/polyfill/es5-shim.js"></script>
+    <script src="lib/polyfill/es6-shim.js"></script>
     <script src="lib/fileSaver/Blob.js"></script>
     <script src="lib/fileSaver/canvas-toBlob.js"></script>
     <script src="lib/fileSaver/FileSaver.js"></script>
@@ -38,9 +38,10 @@
         <div class="inline-block image-container center-content bordered" id="addWidget">
             <div class="center-container">
                 <div class="block">Press to add images</div>
-                <img class="block image-content" src="images/plus.svg" width="100px" height="100px" />
+                <img class="block image-content" src="images/plus.svg" width="100" height="100"/>
                 <input class="display-none" type="file" id="fileInput" multiple />
                 <div class="block">Or drag and drop</div>
+                <div><input type="url" id="addUrl" width="100" placeholder="Or enter image URI"/></div>
             </div>
         </div>
     </div>
@@ -57,14 +58,14 @@
     <div class="inline-block image-container center-content bordered" id="downloadWidget">
         <div class="center-container">
             <div class="block">Download images</div>
-            <img class="block image-content" src="images/download.svg" width="100px" height="100px" />
+            <img class="block image-content" src="images/download.svg" width="100" height="100" />
         </div>
     </div>
 
     <hr/>
 
     <footer>
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script -->
         <!-- GitHub -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"

@@ -2,3 +2,8 @@
 *.suo
 *.sln
 Thumbs.db
+*.swp
+bin
+bld
+*.pfx
+*.ignore

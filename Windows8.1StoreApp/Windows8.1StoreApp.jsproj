@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>c8458e0a-253f-48cb-a9d5-efd55826a54f</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0'">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <RequiredPlatformVersion>8.1</RequiredPlatformVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateKeyFile>Windows8.1StoreApp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxBundle>Never</AppxBundle>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="..\css\app.css">
+      <Link>css\app.css</Link>
+    </Content>
+    <Content Include="..\example\Cedarville-Cursive.woff">
+      <Link>example\Cedarville-Cursive.woff</Link>
+    </Content>
+    <Content Include="..\example\smallLogo.svg">
+      <Link>example\smallLogo.svg</Link>
+    </Content>
+    <Content Include="..\example\squareLogo.svg">
+      <Link>example\squareLogo.svg</Link>
+    </Content>
+    <Content Include="..\example\wideLogo.svg">
+      <Link>example\wideLogo.svg</Link>
+    </Content>
+    <Content Include="..\images\download.svg">
+      <Link>images\download.svg</Link>
+    </Content>
+    <Content Include="..\images\placeholder.png">
+      <Link>images\placeholder.png</Link>
+    </Content>
+    <Content Include="..\images\plus.svg">
+      <Link>images\plus.svg</Link>
+    </Content>
+    <Content Include="..\index.html">
+      <Link>index.html</Link>
+    </Content>
+    <Content Include="..\js\app.js">
+      <Link>js\app.js</Link>
+    </Content>
+    <Content Include="..\js\arrayWithEvent.js">
+      <Link>js\arrayWithEvent.js</Link>
+    </Content>
+    <Content Include="..\js\eventTarget.js">
+      <Link>js\eventTarget.js</Link>
+    </Content>
+    <Content Include="..\js\imageList.js">
+      <Link>js\imageList.js</Link>
+    </Content>
+    <Content Include="..\js\imageListList.js">
+      <Link>js\imageListList.js</Link>
+    </Content>
+    <Content Include="..\js\imageListListProfile.js">
+      <Link>js\imageListListProfile.js</Link>
+    </Content>
+    <Content Include="..\js\imageUtils.js">
+      <Link>js\imageUtils.js</Link>
+    </Content>
+    <Content Include="..\js\inputUI.js">
+      <Link>js\inputUI.js</Link>
+    </Content>
+    <Content Include="..\js\objectToHtml.js">
+      <Link>js\objectToHtml.js</Link>
+    </Content>
+    <Content Include="..\js\outputUI.js">
+      <Link>js\outputUI.js</Link>
+    </Content>
+    <Content Include="..\js\signalPromise.js">
+      <Link>js\signalPromise.js</Link>
+    </Content>
+    <Content Include="..\js\zipPromise.js">
+      <Link>js\zipPromise.js</Link>
+    </Content>
+    <Content Include="..\lib\fileSaver\Blob.js">
+      <Link>lib\fileSaver\Blob.js</Link>
+    </Content>
+    <Content Include="..\lib\fileSaver\canvas-toBlob.js">
+      <Link>lib\fileSaver\canvas-toBlob.js</Link>
+    </Content>
+    <Content Include="..\lib\fileSaver\FileSaver.js">
+      <Link>lib\fileSaver\FileSaver.js</Link>
+    </Content>
+    <Content Include="..\lib\polyfill\es5-shim.js">
+      <Link>lib\polyfill\es5-shim.js</Link>
+    </Content>
+    <Content Include="..\lib\polyfill\es6-shim.js">
+      <Link>lib\polyfill\es6-shim.js</Link>
+    </Content>
+    <Content Include="..\lib\winjs\css\ui-light.css">
+      <Link>lib\winjs\css\ui-light.css</Link>
+    </Content>
+    <Content Include="..\lib\winjs\fonts\Symbols.ttf">
+      <Link>lib\winjs\fonts\Symbols.ttf</Link>
+    </Content>
+    <Content Include="..\lib\winjs\js\base.js">
+      <Link>lib\winjs\js\base.js</Link>
+    </Content>
+    <Content Include="..\lib\winjs\js\ui.js">
+      <Link>lib\winjs\js\ui.js</Link>
+    </Content>
+    <Content Include="..\lib\zip\deflate.js">
+      <Link>lib\zip\deflate.js</Link>
+    </Content>
+    <Content Include="..\lib\zip\inflate.js">
+      <Link>lib\zip\inflate.js</Link>
+    </Content>
+    <Content Include="..\lib\zip\zip.js">
+      <Link>lib\zip\zip.js</Link>
+    </Content>
+    <Content Include="images\logo.scale-100.png" />
+    <Content Include="images\smalllogo.scale-100.png" />
+    <Content Include="images\splashscreen.scale-100.png" />
+    <Content Include="images\storelogo.scale-100.png" />
+    <None Include="Windows8.1StoreApp_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="js\" />
+    <Folder Include="lib\fileSaver\" />
+    <Folder Include="lib\polyfill\" />
+    <Folder Include="lib\winjs\css\" />
+    <Folder Include="lib\winjs\fonts\" />
+    <Folder Include="lib\winjs\js\" />
+    <Folder Include="lib\zip\" />
+    <Folder Include="example\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <!-- To modify your build process, add your task inside one of the targets below then uncomment
+       that target and the DisableFastUpToDateCheck PropertyGroup. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  -->
+</Project>

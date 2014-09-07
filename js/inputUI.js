@@ -4,6 +4,7 @@ var InputUI = function () {
         inputImageListElement,
         fileInputChangeHandler,
         addWidgetElement,
+        addUriElement,
         imageListListProfile;
 
     function updateProfileList() {
@@ -46,6 +47,17 @@ var InputUI = function () {
         addWidgetElement = document.getElementById("addWidget");
         addWidgetElement.addEventListener("click", function () {
             fileInput.click();
+        });
+
+        function onAddImageUrl() {
+            inputImageList.addUriAsync(addUriElement.value).then(undefined, displayError);
+        }
+        addUriElement = document.getElementById("addUrl");
+        addUriElement.addEventListener("keydown", function (event) {
+            var charCode = event.charCode || event.keyCode;
+            if (charCode == 0xD) {
+                onAddImageUrl();
+            }
         });
 
         document.location.search.substr(1).split("&").filter(function (part) { return part.length > 0; }).forEach(function (part) {

@@ -14,7 +14,20 @@ var OutputUI = function () {
                 return total.concat(next);
             }, []);
         ZipPromise.filesToZipBlobAsync(files).then(function (zipBlob) {
-            saveAs(zipBlob, "appImages.zip");
+            if (typeof Windows !== "unknown") {
+                var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+                savePicker.defaultFileExtension = ".zip";
+                savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+                savePicker.fileTypeChoices.insert("Zip file", [".zip"]);
+                savePicker.suggestedFileName = "appImages.zip";
+
+                savePicker.pickSingleFileAsync().then(function (file) {
+                    
+                });
+            }
+            else {
+                saveAs(zipBlob, "appImages.zip");
+            }
         });
     }
 
