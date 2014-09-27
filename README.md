@@ -1,7 +1,10 @@
 appImageSizer
 =============
 
-Given your app's logo, produces the myriad of images at various resolutions required by your app platform.
+Given your app's logo, produces the myriad of images at various resolutions required by your app platform. http://david-risney.github.io/appImageSizer
+
+Implementation
+==============
 
  - Accepts a set of images using <[input type=file or drag and drop](http://www.html5rocks.com/en/tutorials/file/dndfiles/)
  - Select from a set of profiles that describe visual asset requirements for a particular app platform. Consists of type (logo, splashscreen etc), resolutions, and scale factors.
