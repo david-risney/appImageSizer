@@ -14,7 +14,7 @@ var OutputUI = function () {
                 return total.concat(next);
             }, []);
         ZipPromise.filesToZipBlobAsync(files).then(function (zipBlob) {
-            if (typeof Windows !== "unknown") {
+            if (typeof Windows !== "undefined") {
                 var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                 savePicker.defaultFileExtension = ".zip";
                 //savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
