@@ -217,6 +217,8 @@ var ImageListListProfile = (function () {
                     }).then(function (entry) {
                         entry.resolution = resolution;
                         console.log("Added modified image.");
+                    }, function (error) {
+                        throw error;
                     });
                 });
             }
@@ -226,6 +228,8 @@ var ImageListListProfile = (function () {
                 outputImageList.set = set;
                 outputImageList.sourceImage = sourceImage;
                 return outputImageList;
+            }, function (error) {
+                throw error;
             });
         };
 

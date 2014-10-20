@@ -26,17 +26,16 @@ var ImageUtils = (function () {
                 canvasColor = ImageUtils.canvasDataToColor(context.getImageData(0, 0, 1, 1));
                 context.clearRect(0, 0, canvasWidth, canvasHeight);
             }
+            context.fillStyle = canvasColor;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.drawImage(image, 0, 0, image.width, image.height, imageOffsetX, imageOffsetY, imageScaledWidth, imageScaledHeight);
+
+            canvas.toBlob(deferral.complete.bind(deferral));
         }
         catch (e) {
-            deferral.error(new Error("Your browser has bugs with this image format. Please use a different image or a different browser."));
-            canvasColor = "rgb(0, 0, 0, 0)";
+            deferral.error(new Error("Your browser has bugs with this image format. Please try a different image or a different browser."));
         }
-        context.fillStyle = canvasColor;
-        context.fillRect(0, 0, canvas.width, canvas.height);
-
-        context.drawImage(image, 0, 0, image.width, image.height, imageOffsetX, imageOffsetY, imageScaledWidth, imageScaledHeight);
-
-        canvas.toBlob(deferral.complete.bind(deferral));
 
         return deferral.promise;
     };

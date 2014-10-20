@@ -21,7 +21,14 @@ var InputUI = function () {
     }
 
     function displayError(error) {
-        document.getElementById("user-message").textContent = error.message;
+        var message = "A poorly specific error has occured. Please file a bug at http://github.com/david-risney/appImageSizer and describe how to recreate this issue."
+        while (error instanceof [].constructor && error.length) {
+            error = error[0];
+        }
+        if (error && error.message) {
+            message = error.message;
+        }
+        document.getElementById("user-message").textContent = message;
     }
 
     this.initializeAsync = function (inputImageList, imageListListProfileIn) {
