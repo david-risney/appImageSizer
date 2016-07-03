@@ -48,6 +48,29 @@ var ImageListListProfile = (function () {
 
         // Win8 app logo profile
         defaultProfiles = [{
+            name: "Windows 10 Store App",
+            id: 3,
+            data: [
+            { name: "Square 71x71 logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 284, h: 284, f: "Square71x71Logo.scale-400.png" }, { w: 142, h: 142, f: "Square71x71Logo.scale-200.png" }, { w: 71, h: 71, f: "Square71x71Logo.scale-100.png" }, { w: 107, h: 107, f: "Square71x71Logo.scale-150.png" }, { w: 89, h: 89, f: "Square71x71Logo.scale-125.png" }] },
+            { name: "Square 150x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 600, h: 600, f: "Square150x150Logo.scale-400.png" }, { w: 300, h: 300, f: "Square150x150Logo.scale-200.png" }, { w: 150, h: 150, f: "Square150x150Logo.scale-100.png" }, { w: 225, h: 225, f: "Square150x150Logo.scale-150.png" }, { w: 188, h: 188, f: "Square150x150Logo.scale-125.png" }] },
+            { name: "Wide 310x150 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 1240, h: 600, f: "Wide310x150Logo.scale-400.png" }, { w: 620, h: 300, f: "Wide310x150Logo.scale-200.png" }, { w: 465, h: 225, f: "Wide310x150Logo.scale-150.png" }, { w: 310, h: 150, f: "Wide310x150Logo.scale-100.png" }, { w: 388, h: 188, f: "Wide310x150Logo.scale-125.png" }] },
+            { name: "Square 310x310 logo", type: ImageListListProfile.largeLogo, resolutions: [{ w: 1240, h: 1240, f: "Square310x310Logo.scale-400.png" }, { w: 620, h: 620, f: "Square310x310Logo.scale-200.png" }, { w: 465, h: 465, f: "Square310x310Logo.scale-150.png" }, { w: 310, h: 310, f: "Square310x310Logo.scale-100.png" }, { w: 388, h: 388, f: "Square310x310Logo.scale-125.png" }] },
+            {
+                name: "Square 44x44 logo", type: ImageListListProfile.smallLogo, resolutions: [
+                  { w: 176, h: 176, f: "Square44x44Logo.scale-400.png" }, { w: 88, h: 88, f: "Square44x44Logo.scale-200.png" }, { w: 44, h: 44, f: "Square44x44Logo.scale-100.png" }, { w: 66, h: 66, f: "Square44x44Logo.scale-150.png" },  { w: 55, h: 55, f: "Square44x44Logo.scale-125.png" },
+                  { w: 256, h: 256, f: "Square44x44Logo.target-256.png" }, { w: 48, h: 48, f: "Square44x44Logo.target-48.png" }, { w: 24, h: 24, f: "Square44x44Logo.target-24.png" }, { w: 16, h: 16, f: "Square44x44Logo.target-16.png" }
+                ]
+            },
+            { name: "Store logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 200, h: 200, f: "StoreLogo.scale-400.png" }, { w: 100, h: 100, f: "StoreLogo.scale-200.png" }, { w: 50, h: 50, f: "StoreLogo.scale-100.png" }, { w: 75, h: 75, f: "StoreLogo.scale-150.png" }, { w: 63, h: 63, f: "StoreLogo.scale-125.png" }] },
+            { name: "Badge logo", type: ImageListListProfile.smallLogo, resolutions: [{ w: 96, h: 96, f: "BadgeLogo.scale-400.png" }, { w: 48, h: 48, f: "BadgeLogo.scale-200.png" }, { w: 36, h: 36, f: "BadgeLogo.scale-150.png" }, { w: 30, h: 30, f: "BadgeLogo.scale-125.png" }, { w: 24, h: 24, f: "BadgeLogo.scale-100.png" }] },
+            { name: "Splash screen", type: ImageListListProfile.splashScreen, resolutions: [{ w: 2480, h: 1200, f: "SplashScreen.scale-400.png" }, { w: 1240, h: 600, f: "SplashScreen.scale-200.png" }, { w: 930, h: 450, f: "SplashScreen.scale-150.png" }, { w: 775, h: 375, f: "SplashScreen.scale-125.png" }, { w: 620, h: 300, f: "SplashScreen.scale-100.png" }] },
+            { name: "Promotional Image 1", type: ImageListListProfile.promotional, resolutions: [{ w: 414, h: 180, f: "Promotional-414x180.png" }] },
+            { name: "Promotional Image 2", type: ImageListListProfile.promotional, resolutions: [{ w: 414, h: 468, f: "Promotional-414x468.png" }] },
+            { name: "Promotional Image 3", type: ImageListListProfile.promotional, resolutions: [{ w: 558, h: 558, f: "Promotional-558x558.png" }] },
+            { name: "Promotional Image 4", type: ImageListListProfile.promotional, resolutions: [{ w: 558, h: 756, f: "Promotional-558x756.png" }] },
+            { name: "Promotional Image 5", type: ImageListListProfile.promotional, resolutions: [{ w: 846, h: 468, f: "Promotional-846x468.png" }] }
+            ]
+        }, {
             name: "Windows 8.1 Store App",
             id: 1,
             data: [
